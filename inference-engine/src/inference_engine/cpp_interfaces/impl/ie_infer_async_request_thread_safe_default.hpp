@@ -146,6 +146,7 @@ public:
     }
 
     void StartAsync_ThreadUnsafe() override {
+        std::cerr << __PRETTY_FUNCTION__ << "\n";
         _syncRequest->checkBlobs();
         _callbackManager.reset();
         initNextAsyncTask();

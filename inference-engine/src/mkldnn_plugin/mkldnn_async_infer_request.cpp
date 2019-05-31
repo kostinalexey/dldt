@@ -16,8 +16,14 @@ MKLDNNPlugin::MKLDNNAsyncInferRequest::~MKLDNNAsyncInferRequest() {
 }
 
 void MKLDNNPlugin::MKLDNNAsyncInferRequest::Infer() {
+    std::cerr << __PRETTY_FUNCTION__ << "\n";
+
     _callbackManager.disableCallback();
+    std::cerr << __PRETTY_FUNCTION__ << " 11\n";
     StartAsync();
+    std::cerr << __PRETTY_FUNCTION__ << " 22\n";
     Wait(InferenceEngine::IInferRequest::WaitMode::RESULT_READY);
+    std::cerr << __PRETTY_FUNCTION__ << " 33\n";
     _callbackManager.enableCallback();
+    std::cerr << __PRETTY_FUNCTION__ << " 44\n";
 }

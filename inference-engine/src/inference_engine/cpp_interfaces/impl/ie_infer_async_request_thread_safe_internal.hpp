@@ -39,6 +39,7 @@ protected:
 
 public:
     void StartAsync() override {
+        std::cerr << __PRETTY_FUNCTION__ << "\n";
         if (isRequestBusy()) THROW_IE_EXCEPTION << REQUEST_BUSY_str;
         setIsRequestBusy(true);
         try {

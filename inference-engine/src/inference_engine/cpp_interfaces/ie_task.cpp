@@ -29,12 +29,14 @@ Task::Task(const std::function<void()> &function) : _status(TS_INITIAL), _functi
 }
 
 Task::Status Task::runNoThrowNoBusyCheck() noexcept {
+    std::cerr << __PRETTY_FUNCTION__ << "\n";
     IE_PROFILING_AUTO_SCOPE(TaskExecution);
     try {
         _exceptionPtr = nullptr;
         _function();
         setStatus(TS_DONE);
     } catch (...) {
+        std::cerr << __PRETTY_FUNCTION__ << "------- exception\n";
         _exceptionPtr = std::current_exception();
         setStatus(TS_ERROR);
     }

@@ -98,7 +98,9 @@ public:
      * IInferRequest::Infer
      */
     void Infer() {
+        std::cerr << __PRETTY_FUNCTION__ << "  a:" << (void*)actual.get() << "\n";
         CALL_STATUS_FNC_NO_ARGS(Infer);
+        std::cerr << __PRETTY_FUNCTION__ << " end\n";
     }
 
     /**
@@ -147,7 +149,9 @@ public:
      * constructs InferRequest from initialised shared_pointer
      * @param actual
      */
-    explicit InferRequest(IInferRequest::Ptr request) : actual(request) {}
+    explicit InferRequest(IInferRequest::Ptr request) : actual(request) {
+        std::cerr << __PRETTY_FUNCTION__ << "  r:" << (void*)request.get() << "  a:" << (void*)actual.get() << "\n";
+    }
 
     /**
      * @brief Start inference of specified input(s) in asynchronous mode

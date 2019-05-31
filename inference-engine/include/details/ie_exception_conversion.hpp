@@ -15,9 +15,13 @@ auto res = actual->function(__VA_ARGS__, &resp);\
 if (res != OK) InferenceEngine::details::extract_exception(res, resp.msg);
 
 #define CALL_STATUS_FNC_NO_ARGS(function)\
+std::cerr << __PRETTY_FUNCTION__ << " CALL_STATUS_FNC_NO_ARGS 1\n";\
 ResponseDesc resp;\
+std::cerr << __PRETTY_FUNCTION__ << " CALL_STATUS_FNC_NO_ARGS 2" << (void*)actual.get() << "\n";\
 auto res = actual->function(&resp);\
-if (res != OK) InferenceEngine::details::extract_exception(res, resp.msg);
+std::cerr << __PRETTY_FUNCTION__ << " CALL_STATUS_FNC_NO_ARGS 3\n";\
+if (res != OK) InferenceEngine::details::extract_exception(res, resp.msg);\
+std::cerr << __PRETTY_FUNCTION__ << " CALL_STATUS_FNC_NO_ARGS 4\n";
 
 
 #define CALL_FNC(function, ...)\

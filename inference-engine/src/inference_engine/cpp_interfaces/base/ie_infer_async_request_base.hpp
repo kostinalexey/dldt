@@ -28,6 +28,7 @@ public:
     explicit InferRequestBase(std::shared_ptr<T> impl) : _impl(impl) {}
 
     StatusCode Infer(ResponseDesc *resp) noexcept override {
+        std::cerr << __PRETTY_FUNCTION__ << "\n";
         IE_PROFILING_AUTO_SCOPE(Infer);
         TO_STATUS(_impl->Infer());
     }
@@ -68,6 +69,7 @@ public:
     }
 
     void Release() noexcept override {
+        std::cerr << __PRETTY_FUNCTION__ << "\n";
         delete this;
     }
 
